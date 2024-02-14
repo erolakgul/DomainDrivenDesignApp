@@ -3,4 +3,10 @@ branch
          * ddd prensibine dayalý bir þekilde application,domain,infrastructure ve presentation katmanlarý 
           boþ hali ile oluþturuldu.
 
-       
+       1-domain
+         * DDD domain i içerisinde kullanýlacak temel nesneleri tanýmlayacaðýz
+         * BaseEntity class ý base objelerde ortak kullanýcacak olan property leri içeriyor olacak
+         * ValueObject class ý value object ler için kullanacaðýmýz temel fonk larý barýndýrýyor olacak
+         * IAggregateRoot iþaetleyici olarak kullanýlacak olan interface
+         * IRepository db deki iþlemlerin belirtileceði interface
+         * IUnitOfWork repository deki iþlemlerin tek elden yönetileceði interface
