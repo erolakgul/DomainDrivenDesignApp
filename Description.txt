@@ -1,0 +1,6 @@
+branch
+       master
+         * ddd prensibine dayalý bir þekilde application,domain,infrastructure ve presentation katmanlarý 
+          boþ hali ile oluþturuldu.
+
+       
