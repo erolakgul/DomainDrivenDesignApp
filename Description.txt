@@ -10,3 +10,7 @@ branch
          * IAggregateRoot iþaetleyici olarak kullanýlacak olan interface
          * IRepository db deki iþlemlerin belirtileceði interface
          * IUnitOfWork repository deki iþlemlerin tek elden yönetileceði interface
+
+       1-1-domain-models
+         * domain lib altýnda aggregatemodel ler oluþturulacak. örneðin sipariþ için ordermodels klasörü altýnda entityler
+        listelenecek
