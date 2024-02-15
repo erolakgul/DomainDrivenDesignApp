@@ -14,3 +14,6 @@ branch
        1-1-domain-models
          * domain lib altýnda aggregatemodel ler oluþturulacak. örneðin sipariþ için ordermodels klasörü altýnda entityler
         listelenecek
+         * order domain i altýnda orderhead,orderitem ve address class larý açýldý. aggregateroot orderhead olacak ve 
+        diðer class larýn kontrolü bunun üzerinden gerçekleþtirilecek
+         
