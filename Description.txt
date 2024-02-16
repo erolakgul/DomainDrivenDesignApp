@@ -16,4 +16,22 @@ branch
         listelenecek
          * order domain i altýnda orderhead,orderitem ve address class larý açýldý. aggregateroot orderhead olacak ve 
         diðer class larýn kontrolü bunun üzerinden gerçekleþtirilecek
-         
+        
+       2-application
+         * application katmanýnda repository klasöürü altýnda, irepository interface ini implemente eden 
+       order lara ari bir interface tanýmlanýr
+         * infrastructure katmanýnda ise bu sipariþ interface ini kullanan repo bulunur
+         * buyer bounded context ile order bounded context in birbiriyle haberleþmesi için domain event lar kullanýlacak,
+        yani bir sipariþ oluþturulurken bir kullanýcý henüz oluþturulmamýþ olabilir,sipariþin tamamlanmamasý gerekebilir
+        bu yüzden domain event ler ile statü ler tutulacak
+         * bunun için de domain katmaný altýna events isimli klasör altýnda OrderStartedEvent tanýmladýk,
+        bu class INotification interface ini (mediatr) implemente ediyoruz, bu class altýnda da Orderhead sipariþini
+        kullanacaðýmýzý bildiriyoruz. 
+         * OrderStartedEvent ini handler edebilmek için bu sefer application katmanýnda eventhandler klasörü açýyoruz
+         * OrderStartedEventHandler class ý ile OrderStartedEvent ini handle edeceðimizi bildiriyoruz.
+         * OrderStartedEvent ini fýrlatma iþini ise baseentity üzeirnden yapýyoruz.
+         * BaseEntity de notification nesnesine, baseentity e eriþebilen herkesin eriþebilmesini istiyoruz çünkü
+         * BaseEntity deki AddDomainEvents methodunu artýk aggregateroot olan orderhead entity sinde kullanabiliriz.
+         * OrderHead yapýcý methodunda nesne oluþturulma aþamasýnda AddDomainEvents methoduna verileri gönderiyoruz.
+         * OrderStartedEventHandler da ise bu tetikleme iþlenir, ve alýnan data kurallara uygun deðilse, yeni bir müþteri 
+        oluþturulur ve sipariþin müþterisi olarak devam eder

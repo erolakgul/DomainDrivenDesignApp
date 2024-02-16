@@ -1,4 +1,5 @@
-﻿using DDD.Domain.Global;
+﻿using DDD.Domain.Events;
+using DDD.Domain.Global;
 
 namespace DDD.Domain.AggregateModel.OrderModels
 {
@@ -31,6 +32,9 @@ namespace DDD.Domain.AggregateModel.OrderModels
             OrderDate = orderDate;
             Address = address;
             OrderItems = orderItems;
+
+            // orderhead yapıcı methoduna buyer class ının kendisi de gönderilebilir, burada amaç event fırlatmak
+            AddDomainEvents(new OrderStartedEvent("username","lastname",this));
         }
 
         public void AddOrderItem(int quan,int prodId,decimal price) 

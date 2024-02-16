@@ -7,7 +7,13 @@ namespace DDD.Domain.AggregateModel.ClientModels
     /// </summary>
     public class Buyer : BaseEntity
     {
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
+        public string? Name { get; private set; }
+        public string? Surname { get;private set; }
+
+        public Buyer(string? name, string? surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
     }
 }
