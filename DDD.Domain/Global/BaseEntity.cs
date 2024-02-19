@@ -7,8 +7,8 @@ namespace DDD.Domain.Global
     /// </summary>
     public abstract class BaseEntity
     {
-        private ICollection<INotification> _domainNotificationList;
-        public ICollection<INotification> DomainEvents => _domainNotificationList;
+        private List<INotification> _domainNotificationList;
+        public IReadOnlyCollection<INotification> DomainEvents => _domainNotificationList.AsReadOnly();
 
         public int ID { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -20,6 +20,16 @@ namespace DDD.Domain.Global
         {
             _domainNotificationList ??= new List<INotification>();
             _domainNotificationList.Add(notification);
+        }
+
+        public void RemoveDomainEvents(INotification notification)
+        {
+            _domainNotificationList?.Remove(notification);
+        }
+
+        public void ClearDomainEvent()
+        {
+            _domainNotificationList?.Clear();   
         }
     }
 }

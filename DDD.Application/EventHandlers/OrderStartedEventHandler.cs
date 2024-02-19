@@ -1,6 +1,5 @@
 ﻿using DDD.Application.Repository;
 using DDD.Domain.AggregateModel.ClientModels;
-using DDD.Domain.AggregateModel.OrderModels;
 using DDD.Domain.Events;
 using MediatR;
 
@@ -14,7 +13,6 @@ namespace DDD.Application.EventHandlers
     public class OrderStartedEventHandler : INotificationHandler<OrderStartedEvent>
     {
         private readonly IBuyerRepository _buyerRepository;
-     
         public OrderStartedEventHandler(IBuyerRepository buyerRepository)
         {
             _buyerRepository = buyerRepository;
@@ -31,14 +29,9 @@ namespace DDD.Application.EventHandlers
                 // _buyerRepository.Add(newClient);
                 var buyerID = newClient.ID;
                 // son olarak da alınan buyerıd ,siparişin id sine verilir
+
                 //notification.OrderHead.BuyerId = buyerID;
-           
-                new ClientAssignedEvent(
-                     new OrderHead(buyerID,notification.OrderHead.OrderStatus, 
-                                   notification.OrderHead.Description, notification.OrderHead.OrderDate,
-                                   notification.OrderHead.Address, notification.OrderHead.OrderItems
-                                   )
-                     );
+
             }
 
             return Task.CompletedTask;
